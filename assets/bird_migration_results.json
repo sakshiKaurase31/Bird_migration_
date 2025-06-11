@@ -1,0 +1,23 @@
+{
+  "Eric": {
+    "clusters": {
+      "0": 19280,
+      "2": 515
+    },
+    "migrations": []
+  },
+  "Nico": {
+    "clusters": {
+      "0": 19975,
+      "2": 1146
+    },
+    "migrations": []
+  },
+  "Sanne": {
+    "clusters": {
+      "1": 2396,
+      "0": 18608
+    },
+    "migrations": []
+  }
+}

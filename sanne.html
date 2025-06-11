@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Migration Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <div class="analysis-header">
+            <h1>Analysis for: Sanne</h1>
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+
+        <div class="analysis-grid">
+            <!-- Interactive Map -->
+            <div class="analysis-item map-container">
+                <h3>Interactive Migration Map</h3>
+                <p>Zoom and pan to explore the migration route.</p>
+                <iframe src="assets/Sanne_migration_map.html"></iframe>
+            </div>
+
+            <!-- Static Visualizations -->
+            <div class="analysis-item">
+                <h3>Data Visualizations</h3>
+                <div class="viz-container">
+                    <img src="assets/Sanne_migration_path.png" alt="Sanne's Migration Path">
+                    <img src="assets/Sanne_coordinates_time.png" alt="Sanne's Coordinates over Time">
+                    <!-- If you have the altitude_speed.png, add it here -->
+                    <!-- <img src="assets/Sanne_altitude_speed.png" alt="Sanne's Altitude and Speed"> -->
+                </div>
+            </div>
+            
+            <!-- Summary from JSON -->
+            <div class="analysis-item json-summary">
+                <h3>Analysis Summary (from JSON)</h3>
+                <pre id="json-data">Loading summary...</pre>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // This script fetches the JSON data and displays it
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('assets/bird_migration_results.json')
+                .then(response => response.json())
+                .then(data => {
+                    // *** HA MAHATVACHA BADAL AHE (THIS IS THE IMPORTANT CHANGE) ***
+                    // We are now directly accessing the data using the bird's name as a key.
+                    const birdData = data['Sanne'];
+                    
+                    if (birdData) {
+                        document.getElementById('json-data').textContent = JSON.stringify(birdData, null, 2);
+                    } else {
+                        document.getElementById('json-data').textContent = 'Could not find summary data for Sanne.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching JSON:', error);
+                    document.getElementById('json-data').textContent = 'Error loading summary data.';
+                });
+        });
+    </script>
+</body>
+</html>
