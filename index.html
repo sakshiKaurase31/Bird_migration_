@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Migration Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bird Migration Analysis Project</h1>
+        <p>This project analyzes GPS data from three gulls (Eric, Nico, and Sanne) to understand their migration behavior. <br>Using Python with Pandas, and Scikit-learn for clustering, we identify key resting locations and visualize their entire migration routes.</p>
+    </header>
+
+    <main class="container">
+        <h2>Select a Bird to View Analysis</h2>
+        <div class="bird-selection">
+            <div class="card">
+                <h3>Eric</h3>
+                <p>View the interactive migration map and detailed visualizations for Eric.</p>
+                <a href="eric.html" class="button">View Analysis</a>
+            </div>
+            <div class="card">
+                <h3>Nico</h3>
+                <p>View the interactive migration map and detailed visualizations for Nico.</p>
+                <a href="nico.html" class="button">View Analysis</a>
+            </div>
+            <div class="card">
+                <h3>Sanne</h3>
+                <p>View the interactive migration map and detailed visualizations for Sanne.</p>
+                <a href="sanne.html" class="button">View Analysis</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('assets/bird_migration_results.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Function to calculate total points for a bird
+                    const calculateTotal = (birdData) => {
+                        if (!birdData || !birdData.clusters) return 0;
+                        return Object.values(birdData.clusters).reduce((sum, current) => sum + current, 0);
+                    };
+    
+                    // Update stat for Eric
+                    const ericPoints = calculateTotal(data['Eric']);
+                    document.getElementById('eric-stat').textContent = `${ericPoints.toLocaleString()} Data Points`;
+    
+                    // Update stat for Nico
+                    const nicoPoints = calculateTotal(data['Nico']);
+                    document.getElementById('nico-stat').textContent = `${nicoPoints.toLocaleString()} Data Points`;
+    
+                    // Update stat for Sanne
+                    const sannePoints = calculateTotal(data['Sanne']);
+                    document.getElementById('sanne-stat').textContent = `${sannePoints.toLocaleString()} Data Points`;
+                });
+        });
+    </script>
+
+    <footer>
+        <p>Final Demo Project Presentation</p>
+    </footer>
+
+    
+</body>
+</html>

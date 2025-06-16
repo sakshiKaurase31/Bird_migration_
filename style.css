@@ -1,0 +1,206 @@
+/* === Refined Dark Blue Theme === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+    --bg-color: #1a202c; /* Deep Dark Blue */
+    --card-color: #2d3748; /* Slightly Lighter Blue-Gray */
+    --text-color: #e2e8f0; /* Soft White */
+    --heading-color: #ffffff; /* Pure White for Headings */
+    --accent-color: #38b2ac; /* Vibrant Teal */
+    --border-color: #4a5568; /* Subtle Border */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 30px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #a0aec0;
+}
+
+h1, h2, h3 {
+    color: var(--heading-color);
+}
+
+.bird-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 2rem;
+}
+
+.card {
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #4fd1c5;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+.analysis-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.back-button {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.analysis-item {
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-item h3 {
+    margin-top: 0;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.map-container iframe, .viz-container img {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px; 
+}
+
+.map-container iframe {
+    height: 600px;
+}
+
+.viz-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === Mobile Responsiveness === */
+/* Ha code fakt 768px peksha kami width chya screen var kaam karel */
+
+@media (max-width: 768px) {
+
+    /* Font size kami karu, je mobile var vachayla soppe jate */
+    header h1 {
+        font-size: 1.8rem; /* Desktop var 2.5rem hota */
+    }
+    
+    header p {
+        font-size: 0.9rem;
+    }
+
+    /* Padding kami karu, jyane content la jast jaga milel */
+    .container {
+        padding: 15px;
+    }
+
+    .card, .analysis-item {
+        padding: 20px;
+    }
+
+    /* Analysis page cha header (bird name aani back button) ekakhali ek dakhavu */
+    .analysis-header {
+        flex-direction: column; /* Side-by-side aivaji ekakhali ek */
+        align-items: flex-start; /* Sagla content left la align karu */
+        gap: 15px; /* Donhi madhe thode antar */
+    }
+
+    /* Graph images chya grid la eka column madhe thevu */
+    .viz-container {
+        grid-template-columns: 1fr; /* Eka line madhe ekach image */
+    }
+    
+    /* Mothya zalelya image (modal) la adjust karu */
+    .modal-content {
+        max-width: 95%; /* Screen cha jastit jast bhag vapru */
+    }
+
+    .close-modal {
+        font-size: 35px;
+        top: 15px;
+        right: 25px;
+    }
+}
+

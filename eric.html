@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis for Eric</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <div class="analysis-header">
+            <h1>Analysis for: Eric</h1>
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+
+        <div class="analysis-grid">
+            <!-- Interactive Map -->
+            <div class="analysis-item map-container">
+                <h3>Interactive Migration Map</h3>
+                <p>Zoom and pan to explore the migration route.</p>
+                <iframe src="assets/Eric_migration_map.html"></iframe>
+            </div>
+
+            <!-- Static Visualizations -->
+            <div class="analysis-item">
+                <h3>Data Visualizations</h3>
+                <p>Click on any graph to view a larger version.</p>
+                <div class="viz-container">
+                    <img class="graph-img" src="assets/Eric_migration_path.png" alt="Eric's Migration Path">
+                    <img class="graph-img" src="assets/Eric_coordinates_time.png" alt="Eric's Coordinates over Time">
+                </div>
+            </div>
+            
+            <!-- Analysis Summary (JSON) SECTION REMOVED -->
+
+        </div>
+    </main>
+
+    <!-- The Image Modal/Lightbox -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">×</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // === Image Modal Logic (JSON logic has been removed) ===
+            const modal = document.getElementById("image-modal");
+            const modalImg = document.getElementById("modal-img");
+            const graphImages = document.querySelectorAll(".graph-img");
+            const closeModal = document.querySelector(".close-modal");
+
+            graphImages.forEach(img => {
+                img.onclick = function() {
+                    modal.style.display = "flex";
+                    modalImg.src = this.src;
+                }
+            });
+
+            // Close button chya click var modal band kara
+            closeModal.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // Modal chya background var click kelyas to band kara
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
